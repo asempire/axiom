@@ -212,7 +212,7 @@ if [[ $BASEOS == "Linux" ]]; then
         # Stated dependencies in the Github-wiki
         sudo pacman -Syu git ruby curl jq packer rsync --noconfirm
         # Other dependencies
-        sudo pacman -Syu go python-pip net-tools unzip libxslt bc --noconfirm
+        sudo pacman -Syu go python-pip net-tools unzip sshpass libxslt bc --noconfirm
         echo -e "${Blue}Installing Interlace...${Color_Off}"
         sudo rm -fr /tmp/interlace
         git clone https://github.com/codingo/Interlace.git /tmp/interlace
@@ -227,7 +227,7 @@ if [[ $BASEOS == "Linux" ]]; then
         dpkg-reconfigure --frontend noninteractive tzdata
        fi
         echo -e "${Blue}Installing other repo deps...${Color_Off}"
-        DEBIAN_FRONTEND=noninteractive sudo apt-get update && sudo apt-get install git ruby python3-pip curl iputils-ping net-tools unzip xsltproc bc rsync sudo wget nano bsdmainutils openssh-server fail2ban -y 
+        DEBIAN_FRONTEND=noninteractive sudo apt-get update && sudo apt-get install git sshpass ruby python3-pip curl iputils-ping net-tools unzip xsltproc bc rsync sudo wget nano bsdmainutils openssh-server fail2ban -y 
         echo -e "${Blue}Installing jq...${Color_Off}"
         sudo wget -q -O /usr/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && sudo chmod +x /usr/bin/jq
         echo -e "${Blue}Installing packer...${Color_Off}"
@@ -239,7 +239,7 @@ if [[ $BASEOS == "Linux" ]]; then
 
         elif [[ $OS == "Fedora" ]]; then
         echo -e "${Blue}Installing other repo deps...${Color_Off}"
-        sudo dnf update && sudo dnf -y install mmv bc fzf git rubypick python3-pip curl net-tools unzip util-linux fail2ban
+        sudo dnf update && sudo dnf -y install mmv bc fzf git rubypick python3-pip curl net-tools sshpass unzip util-linux fail2ban
         echo -e "${Blue}Installing jq...${Color_Off}"
         sudo wget -q -O /usr/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && sudo chmod +x /usr/bin/jq
         echo -e "${Blue}Installing packer...${Color_Off}"
@@ -273,6 +273,8 @@ if [[ $BASEOS == "Mac" ]]; then
          brew install coreutils
          echo -e "${Blue}Installing Python3...${Color_Off}"
          brew install python3
+         echo -e "${Blue}Installing sshpass...${Color_Off}"
+         brew install sshpass
          echo -e "${Blue}Installing Interlace...${Color_Off}"
          sudo rm -fr /tmp/interlace
          git clone https://github.com/codingo/Interlace.git /tmp/interlace
@@ -392,6 +394,10 @@ if [[ $config_flag == "true" ]] ; then
 "$HOME"/.axiom/interact/axiom-account "$account"  
 fi
 exit 0
+fi
+if [[ -f /tmp/AXIOM_LOCAL_SET ]]; then
+    rm /tmp/AXIOM_LOCAL_SET
+    exit 0 #The script will exit here if self hosting is selected
 fi
 
 if [ -z ${config+x} ]; then
