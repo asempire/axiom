@@ -1,9 +1,9 @@
 #!/bin/bash
 
-$AXIOM_PATH="~/.axiom"
+AXIOM_PATH="$HOME/.axiom"
 echo "Beginning self hosting setup"
 
-cd AXIOM_PATH
+cd $AXIOM_PATH
 
 echo "installing required installation scripts"
 git clone https://github.com/asempire/axiom-local.git
@@ -14,7 +14,7 @@ echo -e "Do you have a .csv with the appropriate configs? (y/N):"
 echo -n ">"
 read choice
 
-if [[ $choice == "y" || $choice == "Y"]];
+if [[ $choice == "y" || $choice == "Y" ]];
 then
 	echo -n "please provide the path of that file: "
 	read FILE_PATH

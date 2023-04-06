@@ -9,7 +9,7 @@ account_helpers=$(find "$AXIOM_PATH/interact/account-helpers" -name "*.sh" ! -na
 account_str=$(echo $account_helpers | sed 's/ /, /g')
 echo -e -n "${Green}Please enter your provider or self hosting [LOCAL] ($account_str): \n>> ${Color_Off}"
 read provider
-if [[ $provider == "LOCAL"]]; #This file is used to skip axiom-build later inside axiom-configure script (for now at least)
+if [[ $provider == "LOCAL" ]]; #This file is used to skip axiom-build later inside axiom-configure script (for now at least)
 then
   touch /tmp/AXIOM_LOCAL_SET
 fi

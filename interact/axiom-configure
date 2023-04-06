@@ -325,7 +325,7 @@ fi
 #
 if [ ! -d "$AXIOM_PATH" ]; then
     echo -e "${Blue}Installing axiom scripts...${Color_Off}"
-    git clone https://github.com/pry0cc/axiom "$AXIOM_PATH"
+    git clone --branch local-dev https://github.com/asempire/axiom "$AXIOM_PATH" #testing repo
 else
     cd "$AXIOM_PATH" && git pull
 fi
@@ -397,6 +397,7 @@ exit 0
 fi
 if [[ -f /tmp/AXIOM_LOCAL_SET ]]; then
     rm /tmp/AXIOM_LOCAL_SET
+    echo "axiom-build will be skipped for local hosting"
     exit 0 #The script will exit here if self hosting is selected
 fi
 
