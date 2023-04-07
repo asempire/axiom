@@ -28,6 +28,10 @@ else
     python3 $HOME/.axiom/axiom-local/create_csv_file.py $FILE_PATH
 fi
 
+if [ ! -f ~/.ssh/axiom_rsa ] ; then #temp fix for axiom_rsa key being generated late
+	ssh-keygen -b 2048 -t rsa -f ~/.ssh/axiom_rsa -q -N ""
+fi
+
 echo "The deployment process might take some time depending on the power of the machines and the internet connection so please be patient"
 $HOME/.axiom/axiom-local/deploy.sh -f $FILE_PATH #change this line when testing
 echo "You can check the progress of the installation by running ~/.axiom/axiom-local/progress.sh"
