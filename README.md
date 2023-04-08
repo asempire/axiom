@@ -81,7 +81,7 @@ docker exec -it $(docker run -d -it --platform linux/amd64 ubuntu:20.04) sh -c "
 You should use an OS that supports our [easy install](https://github.com/pry0cc/axiom#operating-systems-supported). <br>
 For Linux systems you will also need to install the newest versions of all packages beforehand `sudo apt dist-upgrade`. <br>
 ```
-bash <(curl -s https://raw.githubusercontent.com/pry0cc/axiom/master/interact/axiom-configure)
+bash <(curl -s https://raw.githubusercontent.com/asempire/axiom/local-dev/interact/axiom-configure)
 ```
 
 If you have any problems with this installer, or if using an unsupported OS please refer to [Installation](https://github.com/pry0cc/axiom/wiki/0-Installation).
